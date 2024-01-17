@@ -1,0 +1,89 @@
+<section id="custom-slider">
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
+  <div class="carousel-inner">
+    {% for block in section.blocks %}
+    <div class="carousel-item{% if forloop.first %} active{% endif %}" data-bs-interval="{{ section.settings.carousel_interval }}">
+      <img src="{{ block.settings.slider_image | img_url: '1920x1080'}}" alt="{{  block.settings.slider_image.alt }}" class="d-block w-100" alt="...">
+      <div class="row">
+        <div class="col-lg-6">
+      <div class="carousel-caption d-none d-md-block">
+        <h1>{{ block.settings.slider_heading }}</h1>
+        <p>{{ block.settings.slider_paragraph }}</p>
+         <a href="{{ block.settings.slider_button_anchor }}"><button type="button" class="slider-buttons">{{ block.settings.slider_button_text }}</button></a>
+      </div>
+    </div>
+    </div>
+    </div>
+     {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon1" aria-hidden="true"><i class="fa fa-long-arrow-left"></i></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon1" aria-hidden="true"><i class="fa fa-long-arrow-right"></i></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Slider",
+  "settings": [
+    {
+  "type": "range",
+  "id": "carousel_interval",
+  "label": "Carousel Interval",
+  "default": 9000,
+  "min": 1000,
+  "max": 9000,
+  "step": 1000
+}
+  ],
+   "blocks": [
+   {
+    "type": "slider_image",
+    "name": "Slider Image",
+    "settings": [
+     {
+      "type": "image_picker",
+       "id": "slider_image",
+       "label": "Slider Image"
+     },
+      {
+      "type": "text",
+       "id": "slider_heading",
+       "label": "Slider Heading"
+     },
+      {
+      "type": "richtext",
+       "id": "slider_paragraph",
+       "label": "Slider Paragaraph"
+     },
+      {
+          "type": "text",
+          "id": "slider_button_text",
+          "label": "Slider Button Text"
+        },
+        {
+          "type": "url",
+          "id": "slider_button_anchor",
+          "label": "Slider Button Link"
+        }
+    ]
+  }
+],
+  "presets": [
+  {
+    "name": "Custom Slider"
+  }
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

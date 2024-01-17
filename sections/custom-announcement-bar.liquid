@@ -1,0 +1,32 @@
+<section id="announcement-bar" class="announce-bar pt-2 pb-2">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p class="banner-main-heading mb-0">{{ section.settings.announcement_title }}</p>
+        </div>
+      </div>
+    </div>
+</section>
+{% schema %}
+{
+  "name": "Custom Announcement Bar",
+  "settings": [
+    {
+    "type": "text",
+    "label": "title",
+    "id": "announcement_title"
+    }
+  ],
+  "presets": [
+  {
+    "name": "Custom Announcement bar"
+  }
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

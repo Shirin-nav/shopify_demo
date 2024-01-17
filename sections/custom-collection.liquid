@@ -1,0 +1,80 @@
+<section id="collection-list" class="text-lg-center text-md-center text-center ps-lg-5 pe-lg-5" style="background-color: {{ section.settings.background_color }};">
+  <div class="container-fluid">
+  {% if section.settings.title != blank %}
+    <h2 class="collection-list-title pb-5">{{ section.settings.title | escape }}</h2>
+  {% endif %}
+  <div class="row">
+    
+  {% for block in section.blocks %}
+    <div class="col-lg-2 mt-lg-5">
+    {%- assign collection = collections[block.settings.collection] -%}
+    <a href="{{ collection.url | default: "#" }}" class="collection-list-item" {{ block.shopify_attributes }}>
+      {% if collection.image != blank or collection.products.first != blank %}
+        {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
+        <div class="collection-list__image">
+          <img src="{{ collection | img_url: '450x450' }}" alt="{{ collection.image.alt }}">
+        </div>
+      {% endif %}
+      <p>{{ collection.title | default: default_label }}</p>
+    </a>
+      </div>
+  {% endfor %}
+  
+  </div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Collection",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section Background Color",
+       "default": "#eff9fb"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "label": "Collection",
+          "id": "collection",
+          "type": "collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Collection",
+      "category": "Collection",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

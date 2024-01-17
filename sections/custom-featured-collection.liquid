@@ -1,0 +1,76 @@
+<section id="featured-collection" class="ps-lg-5 pe-lg-5" style="background-color: {{ section.settings.background_color }};">
+  <div class="container-fluid">
+  <div class="row">
+    {% for block in section.blocks %}
+     <div class="col-lg-4 mt-lg-5">
+      {%- assign collection = collections[block.settings.collection] -%}
+       <a href="{{ collection.url | default: "#" }}" {{ block.shopify_attributes }}>
+       <div class="" style="background-image: url('{{ block.settings.background_image | img_url }}');">
+      <p>{{ block.settings.featured_para }}</p>
+      <h2>{{ block.settings.featured_heading }}</h2>
+      <a href="{{ block.settings.colle_button_anchor }}"><button type="button" class="collection-buttons">{{ block.settings.colle_button_text }}</button></a>
+     </div>
+     </a>
+      </div>
+  {% endfor %}
+  
+  </div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collections",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section Background Color",
+       "default": "#eff9fb"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_collection",
+      "name": "featured collection",
+      "settings": [
+        {
+      "type": "image_picker",
+       "id": "background_image",
+       "label": "Featured Background Image"
+     },
+        {
+      "type": "richtext",
+      "id": "featured_para",
+      "label": "Featured Paragraph"
+    },
+         {
+      "type": "text",
+      "id": "featured_heading",
+      "label": "Featured Heading"
+    },
+        {
+          "type": "text",
+          "id": "colle_button_text",
+          "label": "Featured Button Text"
+        },
+        {
+          "type": "url",
+          "id": "colle_button_anchor",
+          "label": "Featured Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collections"
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
